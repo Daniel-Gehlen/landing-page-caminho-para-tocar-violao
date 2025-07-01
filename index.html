@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.googletagmanager.com https://hotmart.com;
+        style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+        img-src 'self' data: https:;
+        font-src 'self' https://cdnjs.cloudflare.com;
+        connect-src 'self' https://*.hotmart.com;
+        frame-src https://pay.hotmart.com;
+    "
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>O Caminho para Tocar Violão - Curso Online</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+      :root {
+        --primary: #6e45e2;
+        --secondary: #88d3ce;
+        --accent: #ff7e5f;
+        --dark: #2a2d3e;
+        --light: #f8f9fa;
+        --neon-glow: 0 0 10px rgba(110, 69, 226, 0.8),
+          0 0 20px rgba(110, 69, 226, 0.6);
+        --text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--dark);
+        color: var(--light);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        padding: 20px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: white;
+        text-shadow: var(--text-shadow);
+      }
+
+      .tagline {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .hero {
+        padding: 80px 0;
+        text-align: center;
+        background: url("guitar.png") no-repeat center center/cover;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(42, 45, 62, 0.8);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        color: white;
+        text-shadow: var(--text-shadow);
+      }
+
+      .subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        color: var(--secondary);
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--accent);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(255, 126, 95, 0.4);
+        border: none;
+        cursor: pointer;
+        margin: 10px;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 126, 95, 0.6);
+        background: #ff6a45;
+      }
+
+      .cta-button.neon {
+        background: var(--primary);
+        box-shadow: var(--neon-glow);
+        animation: pulse 2s infinite;
+      }
+
+      .cta-button.neon:hover {
+        box-shadow: 0 0 15px rgba(110, 69, 226, 0.9),
+          0 0 25px rgba(110, 69, 226, 0.7);
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 10px rgba(110, 69, 226, 0.8),
+            0 0 20px rgba(110, 69, 226, 0.6);
+        }
+        50% {
+          box-shadow: 0 0 15px rgba(110, 69, 226, 0.9),
+            0 0 25px rgba(110, 69, 226, 0.7);
+        }
+        100% {
+          box-shadow: 0 0 10px rgba(110, 69, 226, 0.8),
+            0 0 20px rgba(110, 69, 226, 0.6);
+        }
+      }
+
+      .features {
+        padding: 80px 0;
+        background-color: var(--dark);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        font-size: 2.5rem;
+        color: var(--secondary);
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 4px;
+        background: var(--accent);
+        margin: 15px auto;
+        border-radius: 2px;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--primary);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-bottom: 20px;
+      }
+
+      .feature-title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--secondary);
+      }
+
+      .modules {
+        padding: 80px 0;
+        background: linear-gradient(
+          135deg,
+          rgba(42, 45, 62, 0.9),
+          rgba(42, 45, 62, 1)
+        );
+      }
+
+      .modules-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+      }
+
+      .module-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .module-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: var(--primary);
+      }
+
+      .module-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--primary);
+      }
+
+      .module-number {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 10px;
+      }
+
+      .module-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .module-content {
+        margin-bottom: 20px;
+      }
+
+      .module-item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+      }
+
+      .module-item i {
+        margin-right: 10px;
+        color: var(--secondary);
+        font-size: 0.8rem;
+      }
+
+      .instructor {
+        padding: 80px 0;
+        text-align: center;
+        background-color: var(--dark);
+      }
+
+      .instructor-container {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .instructor-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--primary);
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(110, 69, 226, 0.5);
+      }
+
+      .instructor-name {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: white;
+      }
+
+      .instructor-title {
+        font-size: 1.2rem;
+        color: var(--secondary);
+        margin-bottom: 20px;
+      }
+
+      .instructor-bio {
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+
+      .testimonials {
+        padding: 80px 0;
+        background: linear-gradient(
+          135deg,
+          rgba(110, 69, 226, 0.1),
+          rgba(136, 211, 206, 0.1)
+        );
+      }
+
+      .testimonials-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .testimonial-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .testimonial-text::before,
+      .testimonial-text::after {
+        content: '"';
+        font-size: 2rem;
+        color: var(--accent);
+        opacity: 0.5;
+      }
+
+      .testimonial-text::before {
+        position: absolute;
+        top: -15px;
+        left: -10px;
+      }
+
+      .testimonial-text::after {
+        position: absolute;
+        bottom: -30px;
+        right: -10px;
+      }
+
+      .testimonial-author {
+        font-weight: 700;
+        color: var(--secondary);
+      }
+
+      .pricing {
+        padding: 80px 0;
+        background-color: var(--dark);
+        text-align: center;
+      }
+
+      .pricing-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 40px;
+        max-width: 600px;
+        margin: 0 auto;
+        border: 1px solid var(--primary);
+        box-shadow: var(--neon-glow);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pricing-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(110, 69, 226, 0.1),
+          rgba(136, 211, 206, 0.1)
+        );
+        z-index: -1;
+      }
+
+      .price {
+        font-size: 3rem;
+        font-weight: 700;
+        color: white;
+        margin: 20px 0;
+      }
+
+      .price small {
+        font-size: 1rem;
+        color: var(--secondary);
+      }
+
+      .price-notes {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 30px;
+      }
+
+      .guarantee {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        color: var(--secondary);
+      }
+
+      .guarantee i {
+        margin-right: 10px;
+        font-size: 1.5rem;
+      }
+
+      .faq {
+        padding: 80px 0;
+        background: linear-gradient(
+          135deg,
+          rgba(42, 45, 62, 0.9),
+          rgba(42, 45, 62, 1)
+        );
+      }
+
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .faq-question {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .faq-question:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      .faq-item.active .faq-answer {
+        padding: 20px;
+        max-height: 500px;
+      }
+
+      .faq-item.active .faq-question {
+        background: rgba(110, 69, 226, 0.2);
+      }
+
+      .faq-toggle {
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item.active .faq-toggle {
+        transform: rotate(180deg);
+      }
+
+      .footer-cta {
+        padding: 80px 0;
+        text-align: center;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer-cta::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("guitar.png") no-repeat center center/cover;
+        opacity: 0.1;
+      }
+
+      .footer-cta-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .footer-cta p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        color: white;
+      }
+
+      footer {
+        padding: 30px 0;
+        text-align: center;
+        background-color: #1e1f2b;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: var(--dark);
+        border-radius: 15px;
+        max-width: 800px;
+        width: 90%;
+        padding: 30px;
+        position: relative;
+        border: 1px solid var(--primary);
+        box-shadow: var(--neon-glow);
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 1.5rem;
+        color: var(--accent);
+        cursor: pointer;
+        background: none;
+        border: none;
+      }
+
+      .modal-title {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: var(--secondary);
+        text-align: center;
+      }
+
+      .modal-iframe {
+        width: 100%;
+        height: 500px;
+        border: none;
+        border-radius: 10px;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.2rem;
+        }
+
+        .subtitle {
+          font-size: 1.2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .module-card,
+        .feature-card {
+          padding: 20px;
+        }
+
+        .modal-content {
+          padding: 20px;
+        }
+
+        .modal-iframe {
+          height: 400px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 2rem;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+
+        .cta-button {
+          padding: 12px 24px;
+          font-size: 1rem;
+        }
+
+        .price {
+          font-size: 2rem;
+        }
+
+        .modal-iframe {
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container header-content">
+        <div class="logo">O Caminho para Tocar Violão</div>
+        <div class="tagline">
+          Domine o básico do violão do zero com um método comprovado
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-content">
+        <h1>Aprenda Violão de Forma Simples e Eficaz</h1>
+        <p class="subtitle">
+          Com Daniel Gehlen, instrutor com mais de 25 anos de experiência
+        </p>
+        <button class="cta-button neon" id="open-modal">
+          QUERO APRENDER VIOLÃO AGORA!
+        </button>
+        <p>12 módulos completos | Mais de 80 aulas | Aprenda no seu ritmo</p>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">O Que Você Vai Aprender</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-guitar"></i></div>
+            <h3 class="feature-title">Fundamentos Essenciais</h3>
+            <p>
+              Aprenda desde como segurar o violão corretamente até técnicas
+              avançadas de dedilhado, tudo explicado passo a passo.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-music"></i></div>
+            <h3 class="feature-title">Teoria Musical Aplicada</h3>
+            <p>
+              Entenda pulsação, fórmulas de compasso, notas no pentagrama e
+              muito mais de forma prática e direta.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-play-circle"></i></div>
+            <h3 class="feature-title">Vídeoaulas Práticas</h3>
+            <p>
+              Mais de 80 aulas em vídeo com instruções claras e exercícios
+              progressivos para você evoluir rapidamente.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-tachometer-alt"></i>
+            </div>
+            <h3 class="feature-title">No Seu Ritmo</h3>
+            <p>
+              Sem pressão, sem prazos. Você decide quando e onde estudar,
+              garantindo um aprendizado prazeroso.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3 class="feature-title">Dicas Exclusivas</h3>
+            <p>
+              Conhecimento que normalmente levaria anos para desenvolver,
+              compartilhado de forma direta e aplicável.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+            <h3 class="feature-title">Repertório Musical</h3>
+            <p>
+              Aprenda músicas completas em diversos ritmos: rock, reggae, valsa,
+              choro e muito mais!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="modules">
+      <div class="container">
+        <h2 class="section-title">Conteúdo do Curso</h2>
+        <p style="text-align: center; margin-bottom: 40px; font-size: 1.2rem">
+          12 módulos completos para levar você do absoluto zero ao domínio do
+          violão
+        </p>
+
+        <div class="modules-container">
+          <div class="module-card">
+            <div class="module-number">Módulo 1</div>
+            <h3 class="module-title">Iniciação Prática Musical</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Partes do violão e qual escolher
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Como segurar o violão
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Técnicas para mão dominante e
+                auxiliar
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Como afinar com o celular
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Primeiros acordes (Em e Am7)
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 1: Melô do Am7 e Em
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 2</div>
+            <h3 class="module-title">Divisão Rítmica</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Primeiras notas no pentagrama
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Pulsação e metrônomo
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Fórmula de compasso
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Pausas de 4, 2 e 1 tempo
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Solfejo rítmico
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 2: Ritmo Rock
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 3</div>
+            <h3 class="module-title">Dedilhado nas Cordas Agudas</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Uso dos dedos indicador, médio e
+                anelar
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Notas Mi, Si e Sol
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Exercícios de mudança de cordas
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Variações de padrões
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 3: Ritmo Reggae
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 4</div>
+            <h3 class="module-title">Técnica do Polegar</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Tocando com o polegar
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Notas Mi, Lá e Ré
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Exercícios de repetição
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Variações de padrões
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 4: Esse ritmo também é muito
+                fácil
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 5</div>
+            <h3 class="module-title">Notas nas Cordas Graves</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Notas presas na 6ª corda
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Notas presas na 5ª corda
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Notas presas na 4ª corda
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Walking bass
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 5: Rock Power Chord
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 6</div>
+            <h3 class="module-title">Notas nas Cordas Agudas</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Notas presas na 3ª corda
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Notas presas na 2ª corda
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Notas presas na 1ª corda
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Compasso ternário
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 6: Esse é o som do Groove
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 7</div>
+            <h3 class="module-title">Sustenido e Bemol</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Notas alteradas
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> O bequadro
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Exercícios com notas naturais e
+                alteradas
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 7: Ritmo de Valsa
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 8</div>
+            <h3 class="module-title">Partitura a Duas Vozes</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Importância das unhas
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Postura avançada
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Padrões de dedilhado
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 8: Sempre assim a dedilhar
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 9</div>
+            <h3 class="module-title">Acompanhamentos Rítmicos</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Duas notas ao mesmo tempo
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Como apagar o som
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Três vozes ao mesmo tempo
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 9: Moda-Choro
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 10</div>
+            <h3 class="module-title">Oitavas</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> O que são oitavas
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Exercícios com oitavas
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Digitações alternativas
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 10: Basta só ouvir e cantar
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 11</div>
+            <h3 class="module-title">Colcheias</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Divisão rítmica com colcheias
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Pausas de colcheia
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Exercícios nas cordas graves
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 11: Toque um som dançante
+              </div>
+            </div>
+          </div>
+
+          <div class="module-card">
+            <div class="module-number">Módulo 12</div>
+            <h3 class="module-title">Músicas Instrumentais</h3>
+            <div class="module-content">
+              <div class="module-item">
+                <i class="fas fa-check"></i> Dia das colcheias
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Parabéns a você
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Duas vozes melódicas
+              </div>
+              <div class="module-item">
+                <i class="fas fa-check"></i> Música 12: Dedilhado sempre igual
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="instructor">
+      <div class="container instructor-container">
+        <img
+          src="image-caminho.png"
+          alt="Daniel Gehlen"
+          class="instructor-image"
+        />
+        <h3 class="instructor-name">Daniel Gehlen</h3>
+        <p class="instructor-title">
+          Instrutor de Violão com 25+ anos de experiência
+        </p>
+        <p class="instructor-bio">
+          Formado em Licenciatura em Música com ênfase em Violão pela UFRGS,
+          Daniel reuniu toda sua paixão, conhecimento e insights de seus
+          próprios mestres para criar um curso que vai revolucionar sua jornada
+          musical. Com mais de 5 anos como Hotmarter, ele já ajudou centenas de
+          alunos a realizarem o sonho de tocar violão.
+        </p>
+        <button class="cta-button neon" id="open-modal-2">
+          QUERO APRENDER COM O DANIEL!
+        </button>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title">O Que Os Alunos Dizem</h2>
+
+        <div class="testimonials-container">
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              Depois de tentar aprender sozinho por anos, finalmente encontrei
+              um método que faz sentido. Em 3 meses já consigo tocar várias
+              músicas completas!
+            </p>
+            <p class="testimonial-author">- João Silva</p>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              As explicações do Daniel são tão claras que parece que ele está
+              ali do seu lado te ensinando. Nunca imaginei que aprender violão
+              pudesse ser tão fácil.
+            </p>
+            <p class="testimonial-author">- Maria Souza</p>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              O curso superou todas minhas expectativas. A progressão dos
+              módulos é perfeita e os exercícios realmente funcionam. Recomendo
+              para todos que querem começar.
+            </p>
+            <p class="testimonial-author">- Carlos Oliveira</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing">
+      <div class="container">
+        <h2 class="section-title">Invista no Seu Sonho Musical</h2>
+
+        <div class="pricing-card">
+          <h3>O Caminho para Tocar Violão</h3>
+          <p>12 módulos completos | 80+ aulas | Acesso vitalício</p>
+
+          <div class="price">R$ 297,00 <small>ou 12x de R$ 30,72</small></div>
+          <p class="price-notes">* Pagamento seguro via Hotmart</p>
+
+          <div class="guarantee">
+            <i class="fas fa-shield-alt"></i>
+            <span>Garantia incondicional de 30 dias</span>
+          </div>
+
+          <button class="cta-button neon" id="open-modal-3">
+            QUERO ME INSCREVER AGORA!
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="container">
+        <h2 class="section-title">Perguntas Frequentes</h2>
+
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Preciso saber algo sobre música antes de começar?</span>
+              <i class="fas fa-chevron-down faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Não! O curso foi projetado para iniciantes absolutos. Você
+                começará do zero, aprendendo desde como segurar o violão
+                corretamente até técnicas mais avançadas.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Quanto tempo preciso dedicar por dia?</span>
+              <i class="fas fa-chevron-down faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Recomendamos pelo menos 20-30 minutos diários para ver progresso
+                consistente. Mas você pode adaptar conforme sua disponibilidade
+                - o importante é a consistência.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Qual violão devo comprar para começar?</span>
+              <i class="fas fa-chevron-down faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                No primeiro módulo explicamos detalhadamente sobre os tipos de
+                violão e como escolher o ideal para iniciantes. Você não precisa
+                gastar muito - um violão básico de boa qualidade é suficiente
+                para começar.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Por quanto tempo tenho acesso ao curso?</span>
+              <i class="fas fa-chevron-down faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                O acesso é vitalício! Você pode fazer no seu ritmo e revisitar
+                as aulas quantas vezes quiser, sem pressa.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>E se eu não gostar do curso?</span>
+              <i class="fas fa-chevron-down faq-toggle"></i>
+            </div>
+            <div class="faq-answer">
+              <p>
+                Oferecemos uma garantia incondicional de 30 dias. Se por
+                qualquer motivo você não estiver satisfeito, devolvemos 100% do
+                seu investimento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-cta">
+      <div class="container footer-cta-content">
+        <h2>Pronto para Transformar seu Sonho em Realidade?</h2>
+        <p>
+          Comece hoje mesmo sua jornada musical com um método comprovado, criado
+          por um especialista com mais de 25 anos de experiência. Em poucas
+          semanas você estará tocando suas primeiras músicas!
+        </p>
+        <button class="cta-button neon" id="open-modal-4">
+          QUERO COMEÇAR AGORA!
+        </button>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>© 2025 O Caminho para Tocar Violão - Todos os direitos reservados</p>
+        <p>
+          Este produto é comercializado com apoio da Hotmart. A plataforma não
+          faz controle editorial prévio dos produtos comercializados, nem avalia
+          a tecnicidade e experiência daqueles que os produzem. A existência de
+          um produto e sua aquisição, por meio da plataforma, não podem ser
+          consideradas como garantia de qualidade de conteúdo e resultado, em
+          qualquer hipótese. Ao adquiri-lo, o comprador declara estar ciente
+          dessas informações.
+        </p>
+      </div>
+    </footer>
+
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <button class="close-modal" id="close-modal">&times;</button>
+        <h3 class="modal-title">O Caminho para Tocar Violão</h3>
+        <iframe
+          class="modal-iframe"
+          src="https://pay.hotmart.com/T41807997K?sck=HOTMART_PRODUCT_PAGE&off=jydlopnu&hotfeature=32&bid=1751331132979"
+          frameborder="0"
+        ></iframe>
+      </div>
+    </div>
+
+    <script>
+      // Modal functionality
+      const modal = document.getElementById("modal");
+      const openModalButtons = document.querySelectorAll('[id^="open-modal"]');
+      const closeModal = document.getElementById("close-modal");
+
+      openModalButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          modal.style.display = "flex";
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      });
+
+      // Fechar ao pressionar ESC
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.style.display === "flex") {
+          modal.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // FAQ functionality
+      const faqItems = document.querySelectorAll(".faq-item");
+
+      faqItems.forEach((item) => {
+        const question = item.querySelector(".faq-question");
+
+        question.addEventListener("click", () => {
+          item.classList.toggle("active");
+        });
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
